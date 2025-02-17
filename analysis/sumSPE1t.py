@@ -234,11 +234,11 @@ plt.savefig(output_directory + date+'diagnosticplot.png')
 
 import pandas as pd
 
-pd.DataFrame(results).transpose().to_csv('/media/disk_a/WbLS-DATA/csv/phase6/bnl1t_spe_fit_results_'+date+'.csv',index=False)
+pd.DataFrame(results).transpose().to_csv('/media/disk_a/WbLS-DATA/csv/phase7/bnl1t_spe_fit_results_'+date+'.csv',index=False)
 
 #file to output group histogram fit data
 
-csvOutputFile='sumSPE_phase6.csv'
+csvOutputFile='sumSPE_phase7.csv'
 try:
     df=pd.read_csv(csvOutputFile,header=[0,1],index_col=0)
 except FileNotFoundError:
@@ -296,6 +296,18 @@ for n,group in enumerate(['all','upper','lower','middle','bottom']):
     print("xdataInit:", xdataInit)
     print("ydataInit:", ydataInit)
     print("Initial guess (p0):", [mode,2,1e4])
+    print(f"\nProcessing group: {group}")
+    print("Total data points:", len(total))
+    if np.max(ydata) == 0:
+        print(f"Skipping group {group} because ydata contains only zeros.")
+        continue
+
+    if len(total) == 0:
+        print(f"Skipping group {group} because total is empty.")
+        continue
+    print(f"Group {group}: Before filtering -> {len(xdata)} points")
+    print(f"Group {group}: After filtering -> {len(xdataInit)} points")
+
 
     #fitting is fast, do an initial fit to find center to fit around
     poptInit,pcovInit=curve_fit(gauss,xdataInit,ydataInit,p0=[mode,2,1e4])
