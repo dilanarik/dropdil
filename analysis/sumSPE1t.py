@@ -308,9 +308,9 @@ for n,group in enumerate(['all','upper','lower','middle','bottom']):
     print(f"Group {group}: Before filtering -> {len(xdata)} points")
     print(f"Group {group}: After filtering -> {len(xdataInit)} points")
 
-
-    #fitting is fast, do an initial fit to find center to fit around
-    poptInit,pcovInit=curve_fit(gauss,xdataInit,ydataInit,p0=[mode,2,1e4])
+    amplitude_guess = max(ydataInit) if len(ydataInit) > 0 else 100  # added this new guess
+    #fitting is fast, do an initial fit to find center to fit around, this was 1e4
+    poptInit,pcovInit=curve_fit(gauss,xdataInit,ydataInit,p0=[mode,2, amplitude_guess]) 
     xmask=[(poptInit[0]-histRange/8)<charge<(poptInit[0]+histRange/8) for charge in xdata]
     xdata=xdata[xmask]
     ydata=ydata[xmask]
