@@ -293,6 +293,10 @@ for n,group in enumerate(['all','upper','lower','middle','bottom']):
     xdataInit=xdata[xmask]
     ydataInit=ydata[xmask]
 
+    print("xdataInit:", xdataInit)
+    print("ydataInit:", ydataInit)
+    print("Initial guess (p0):", [mode,2,1e4])
+
     #fitting is fast, do an initial fit to find center to fit around
     poptInit,pcovInit=curve_fit(gauss,xdataInit,ydataInit,p0=[mode,2,1e4])
     xmask=[(poptInit[0]-histRange/8)<charge<(poptInit[0]+histRange/8) for charge in xdata]
