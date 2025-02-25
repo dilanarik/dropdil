@@ -5,7 +5,7 @@ import sys
 from datetime import datetime
 import os
 
-directory='/media/disk_i/WbLS-DATA/raw_root/phase7/muon/'
+directory='/media/disk_i/WbLS-DATA/raw_root/phase8/muon/'
 date=sys.argv[1]
 dateString=datetime.strptime(date,'%y%m%d').strftime('%d %b %Y')
 allRootFiles=os.listdir(directory)
@@ -234,7 +234,7 @@ plt.savefig(output_directory + date+'diagnosticplot.png')
 
 import pandas as pd
 
-pd.DataFrame(results).transpose().to_csv('/media/disk_i/WbLS-DATA/csv/phase7/bnl1t_spe_fit_results_'+date+'.csv',index=False)
+pd.DataFrame(results).transpose().to_csv('/media/disk_i/WbLS-DATA/csv/phase8/bnl1t_spe_fit_results_'+date+'.csv',index=False)
 
 #file to output group histogram fit data
 
