@@ -5,14 +5,14 @@ import sys
 from datetime import datetime
 import os
 
-directory='/media/disk_f/30t-DATA/raw_root/phase0/'
+directory='/media/disk_i/30t-DATA/raw_root/phase0/'
 date=sys.argv[1]
 dateString=datetime.strptime(date,'%y%m%d').strftime('%d %b %Y')
 allRootFiles=os.listdir(directory)
 inFiles=list(filter(lambda file: date in file,allRootFiles))
 
 if not inFiles:
-    directory='/media/disk_c/WbLS-DATA/raw_root/phase3/muon/'
+    directory='/media/disk_i/30t-DATA/raw_root/phase0/'
     allRootFiles=os.listdir(directory)
     inFiles=list(filter(lambda file: date in file,allRootFiles))
     if not inFiles:
@@ -286,7 +286,7 @@ plt.savefig(output_directory +date+'diagnosticplot30t.png')
 
 import pandas as pd
 
-pd.DataFrame(results).transpose().to_csv('/media/disk_e/30t-DATA/csv/bnl30t_spe_fit_results_'+date+'.csv',index=False)
+pd.DataFrame(results).transpose().to_csv('/media/disk_i/30t-DATA/csv/bnl30t_spe_fit_results_'+date+'.csv',index=False)
 
 
 print('done with {}'.format(dateString))
