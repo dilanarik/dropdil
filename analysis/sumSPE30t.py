@@ -48,7 +48,7 @@ speHistograms={}
 speHistogramsUnused={} #misnomer. we don't use them for fitting
 groupSumHistograms={}
 
-skip=['adc_b3_ch0','adc_b3_ch1','adc_b3_ch2','adc_b3_ch3']
+skip=['adc_b3_ch0','adc_b3_ch1','adc_b3_ch2','adc_b3_ch3', 'adc_b1_ch9 ']
 
 channels=[channel for channel in dataChannelNamesSorted30t if not channel in skip]
 
@@ -280,7 +280,9 @@ for n,channel in enumerate(channels):
     
     
 plt.tight_layout()
-plt.savefig('diagnostics/30t/'+date+'diagnosticplot.png')
+output_directory = '/home/darik/plots/'
+
+plt.savefig(output_directory +date+'diagnosticplot30t.png')
 
 import pandas as pd
 
