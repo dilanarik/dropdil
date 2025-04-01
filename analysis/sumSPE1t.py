@@ -238,7 +238,7 @@ pd.DataFrame(results).transpose().to_csv('/media/disk_k/WbLS-DATA/csv/phase8/bnl
 
 #file to output group histogram fit data
 
-csvOutputFile='sumSPE_phase6.csv'
+csvOutputFile='sumSPE_phase8.csv'
 try:
     df=pd.read_csv(csvOutputFile,header=[0,1],index_col=0)
 except FileNotFoundError:
