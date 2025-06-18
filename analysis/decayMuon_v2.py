@@ -115,7 +115,9 @@ for n in range(len(tubesCorrectedSum)):
         toAdd=(np.median(tubesCorrected[tube][n])-tubesCorrected[tube][n])*voltageFactor
         tubesCorrectedSum[n]+=toAdd/df.loc[tube,'spe_mean']
 
-toWrite=pd.DataFrame(columns=['peakTime','peakTotal']+list(tubesCorrected.keys()))
+toWrite = pd.DataFrame(columns=['peakTime','peakTotal']+list(tubesCorrected.keys()))
+
+
 i=0
 r=0
 integrationWidth=30
@@ -143,9 +145,11 @@ for i,event in enumerate(tubesCorrectedSum):
                 toAddDict[tube]=[c]
                 toAddDict['peakTotal'][0]+=c
             
-            #print(charge(event,peakTimes2-floor(integrationWidth/2),peakTimes2+floor(integrationWidth/2)))
-            toWrite=pd.concat((toWrite,pd.DataFrame(toAddDict)),ignore_index=True)
-            r+=1
+
+            toAdd = pd.DataFrame(toAddDict)
+            if not toAdd.empty and not toAdd.isna().all(axis=None):
+                toWrite = pd.concat((toWrite, toAdd), ignore_index=True)
+            r += 1
 
 print('{}:{} decays ({} of total)'.format(dateString,r,(r/i if i!=0 else 0)))
 
