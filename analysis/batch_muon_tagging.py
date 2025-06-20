@@ -3,7 +3,7 @@ import re
 import subprocess
 
 root_dir = "/media/disk_k/WbLS-DATA/raw_root/phase8/muon"
-calib_file = "bnl1t_spe_fit_results_250209.csv"
+calib_file = "bnl1t_spe_fit_results_250221.csv"
 script_name = "decayMuon_v2.py"
 
 match = re.search(r"(\d{6})", calib_file)
